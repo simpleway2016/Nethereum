@@ -9,6 +9,9 @@
     <PackageId>Nethereum.Unity</PackageId>
     <PackageTags>Netherum;Unity3d;Unity;Ethereum;Blockchain;Crypto 2.0</PackageTags>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net461|AnyCPU'">
+    <DocumentationFile>C:\Users\jack\source\repos\Nethereum\src\Nethereum.Unity\Nethereum.Unity.xml</DocumentationFile>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Nethereum.Contracts\Nethereum.Contracts.csproj" />

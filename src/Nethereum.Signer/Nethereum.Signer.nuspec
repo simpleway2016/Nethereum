@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Jack.Nethereum.Signer</id><!--Nuget包名称-->
+    <version>3.5.0</version><!--Nuget包版本-->
+    <title>Jack.Nethereum.Signer</title><!--Nuget包显示名称-->
+    <authors>Juan Blanco;Nethereum team;Nethereum contributors</authors><!--作者-->
+    <owners>Juan Blanco;Nethereum team;Nethereum contributors</owners><!--所有者-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Nethereum.Signer
+    </description>
+    <summary></summary><!--简介-->
+    <copyright></copyright><!--版权-->
+    <language>zh-CN</language><!--语言-->
+    <tags></tags><!--标签-->
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard2.0\Nethereum.Signer.dll" target="lib\netstandard2.0\Nethereum.Signer.dll" />
+    <file src="Nethereum.Signer.xml" target="lib\netstandard2.0\Nethereum.Signer.xml" />
+    
+    <file src="bin\Release\netstandard2.0\Nethereum.Hex.dll" target="lib\netstandard2.0\Nethereum.Hex.dll" />
+    <file src="..\Nethereum.Hex\Nethereum.Hex.xml" target="lib\netstandard2.0\Nethereum.Hex.xml" />
+    
+    <file src="bin\Release\netstandard2.0\Nethereum.Model.dll" target="lib\netstandard2.0\Nethereum.Model.dll" />
+    <file src="..\Nethereum.Model\Nethereum.Model.xml" target="lib\netstandard2.0\Nethereum.Model.xml" />
+    
+    <file src="bin\Release\netstandard2.0\Nethereum.RLP.dll" target="lib\netstandard2.0\Nethereum.RLP.dll" />
+    <file src="..\Nethereum.RLP\Nethereum.RLP.xml" target="lib\netstandard2.0\Nethereum.RLP.xml" />
+    
+    <file src="bin\Release\netstandard2.0\Nethereum.Util.dll" target="lib\netstandard2.0\Nethereum.Util.dll" />
+    <file src="..\Nethereum.Util\Nethereum.Util.xml" target="lib\netstandard2.0\Nethereum.Util.xml" />
+    <!--目标Dll所在路径-->
+  </files>
+</package>

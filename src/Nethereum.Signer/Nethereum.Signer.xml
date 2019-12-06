@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nethereum.Signer</name>
+    </assembly>
+    <members>
+        <member name="M:Nethereum.Signer.Crypto.ECDSASignature.MakeCanonical">
+            <summary>
+                Enforce LowS on the signature
+            </summary>
+        </member>
+        <member name="M:Nethereum.Signer.Crypto.ECDSASignature.ToDER">
+            What we get back from the signer are the two components of a signature, r and s. To get a flat byte stream
+            of the type used by Bitcoin we have to encode them using DER encoding, which is just a way to pack the two
+            components into a structure.
+        </member>
+        <member name="T:Nethereum.Signer.Crypto.ECKey">
+            <summary>
+                ECKey based on the implementation of NBitcoin
+                https://github.com/MetacoSA/NBitcoin
+                Removed the dependency of the custom BouncyCastle
+            </summary>
+        </member>
+        <member name="P:Nethereum.Signer.SignedTransactionBase.Nonce">
+            <summary>
+                The counter used to make sure each transaction can only be processed once, you may need to regenerate the
+                transaction if is too low or too high, simples way is to get the number of transacations
+            </summary>
+        </member>
+        <member name="P:Nethereum.Signer.TransactionChainId.Key">
+            <summary>
+            Recovered Key from Signature
+            </summary>
+        </member>
+    </members>
+</doc>

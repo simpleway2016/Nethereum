@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nethereum.RLP</name>
+    </assembly>
+    <members>
+        <member name="T:Nethereum.RLP.IRLPElement">
+            <summary>
+                Wrapper class for decoded elements from an RLP encoded byte array.
+            </summary>
+        </member>
+        <member name="T:Nethereum.RLP.RLP">
+            <summary>
+                Recursive Length Prefix (RLP) encoding.
+                <para>
+                    The purpose of RLP is to encode arbitrarily nested arrays of binary data, and
+                    RLP is the main encoding method used to serialize objects in Ethereum. The
+                    only purpose of RLP is to encode structure; encoding specific atomic data
+                    types (eg. strings, integers, floats) is left up to higher-order protocols; in
+                    Ethereum the standard is that integers are represented in big endian binary
+                    form. If one wishes to use RLP to encode a dictionary, the two suggested
+                    canonical forms are to either use [[k1,v1],[k2,v2]...] with keys in
+                    lexicographic order or to use the higher-level Patricia Tree encoding as
+                    Ethereum does.
+                </para>
+                <para>
+                    The RLP encoding function takes in an item. An item is defined as follows:
+                </para>
+                <para>
+                    - A string (ie. byte array) is an item - A list of items is an item
+                </para>
+                <para>
+                    For example, an empty string is an item, as is the string containing the word
+                    "cat", a list containing any number of strings, as well as more complex data
+                    structures like ["cat",["puppy","cow"],"horse",[[]],"pig",[""],"sheep"]. Note
+                    that in the context of the rest of this article, "string" will be used as a
+                    synonym for "a certain number of bytes of binary data"; no special encodings
+                    are used and no knowledge about the content of the strings is implied.
+                </para>
+                <para>
+                    See:
+                </para>
+                <see cref="!:https://github.com/ethereum/wiki/wiki/RLP" />
+            </summary>
+        </member>
+        <member name="F:Nethereum.RLP.RLP.SIZE_THRESHOLD">
+            <summary>
+                Reason for threshold according to Vitalik Buterin:
+                - 56 bytes maximizes the benefit of both options
+                - if we went with 60 then we would have only had 4 slots for long strings
+                so RLP would not have been able to store objects above 4gb
+                - if we went with 48 then RLP would be fine for 2^128 space, but that's way too much
+                - so 56 and 2^64 space seems like the right place to put the cutoff
+                - also, that's where Bitcoin's varint does the cutof
+            </summary>
+        </member>
+        <member name="F:Nethereum.RLP.RLP.OFFSET_SHORT_ITEM">
+            <summary>
+                [0x80]
+                If a string is 0-55 bytes long, the RLP encoding consists of a single
+                byte with value 0x80 plus the length of the string followed by the
+                string. The range of the first byte is thus [0x80, 0xb7].
+            </summary>
+        </member>
+        <member name="F:Nethereum.RLP.RLP.OFFSET_LONG_ITEM">
+            <summary>
+                [0xb7]
+                If a string is more than 55 bytes long, the RLP encoding consists of a
+                single byte with value 0xb7 plus the length of the length of the string
+                in binary form, followed by the length of the string, followed by the
+                string. For example, a length-1024 string would be encoded as
+                \xb9\x04\x00 followed by the string. The range of the first byte is thus
+                [0xb8, 0xbf].
+            </summary>
+        </member>
+        <member name="F:Nethereum.RLP.RLP.OFFSET_SHORT_LIST">
+            <summary>
+                [0xc0]
+                If the total payload of a list (i.e. the combined length of all its
+                items) is 0-55 bytes long, the RLP encoding consists of a single byte
+                with value 0xc0 plus the length of the list followed by the concatenation
+                of the RLP encodings of the items. The range of the first byte is thus
+                [0xc0, 0xf7].
+            </summary>
+        </member>
+        <member name="F:Nethereum.RLP.RLP.OFFSET_LONG_LIST">
+            <summary>
+                [0xf7]
+                If the total payload of a list is more than 55 bytes long, the RLP
+                encoding consists of a single byte with value 0xf7 plus the length of the
+                length of the list in binary form, followed by the length of the list,
+                followed by the concatenation of the RLP encodings of the items. The
+                range of the first byte is thus [0xf8, 0xff].
+            </summary>
+        </member>
+        <member name="M:Nethereum.RLP.RLP.Decode(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,Nethereum.RLP.RLPCollection)">
+            <summary>
+                Decodes a message from a starting point to an end point
+            </summary>
+        </member>
+        <member name="M:Nethereum.RLP.RLP.IsListBiggerThan55Bytes(System.Byte[],System.Int32)">
+            <summary>
+                data[0] - 0xF7 = how many next bytes allocated
+                for the length of the list
+            </summary>
+        </member>
+    </members>
+</doc>

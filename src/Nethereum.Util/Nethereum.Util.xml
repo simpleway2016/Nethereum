@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nethereum.Util</name>
+    </assembly>
+    <members>
+        <member name="M:Nethereum.Util.AddressExtensions.IsValidEthereumAddressHexFormat(System.String)">
+            <summary>
+            Validates if the hex string is 40 alphanumeric characters
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.AddressUtil.IsValidEthereumAddressHexFormat(System.String)">
+            <summary>
+            Validates if the hex string is 40 alphanumeric characters
+            </summary>
+        </member>
+        <member name="T:Nethereum.Util.BigDecimal">
+            BigNumber based on the original http://uberscraper.blogspot.co.uk/2013/09/c-bigdecimal-class-from-stackoverflow.html
+            which was inspired by http://stackoverflow.com/a/4524254
+            Original Author: Jan Christoph Bernack (contact: jc.bernack at googlemail.com)
+            Changes JB: Added parse, Fix Normalise, Added Floor, New ToString, Change Equals (normalise to validate first), Change Casting to avoid overflows (even if might be slower), Added Normalise Bigger than zero, test on operations, parsing, casting, and other test coverage for ethereum unit conversions
+            Changes KJ: Added Culture formatting
+            http://stackoverflow.com/a/13813535/956364" />
+            <summary>
+                Arbitrary precision Decimal.
+                All operations are exact, except for division.
+                Division never determines more digits than the given precision of 50.
+            </summary>
+        </member>
+        <member name="F:Nethereum.Util.BigDecimal.Precision">
+            <summary>
+                Sets the maximum precision of division operations.
+                If AlwaysTruncate is set to true all operations are affected.
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.BigDecimal.#ctor(System.Numerics.BigInteger,System.Int32,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="mantissa"></param>
+            <param name="exponent">
+                The number of decimal units for example (-18). A positive value will be normalised as 10 ^
+                exponent
+            </param>
+            <param name="alwaysTruncate">
+                Specifies whether the significant digits should be truncated to the given precision after
+                each operation.
+            </param>
+        </member>
+        <member name="M:Nethereum.Util.BigDecimal.Normalize">
+            <summary>
+                Removes trailing zeros on the mantissa
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.BigDecimal.Truncate(System.Int32)">
+            <summary>
+                Truncate the number to the given precision by removing the least significant digits.
+            </summary>
+            <returns>The truncated number</returns>
+        </member>
+        <member name="M:Nethereum.Util.BigDecimal.RoundAwayFromZero(System.Int32)">
+            <summary>
+            Rounds the number to the specified amount of significant digits.
+            Midpoints (like 0.5 or -0.5) are rounded away from 0 (e.g. to 1 and -1 respectively).
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.BigDecimal.Floor">
+            <summary>
+                Truncate the number, removing all decimal digits.
+            </summary>
+            <returns>The truncated number</returns>
+        </member>
+        <member name="M:Nethereum.Util.BigDecimal.AlignExponent(Nethereum.Util.BigDecimal,Nethereum.Util.BigDecimal)">
+            <summary>
+                Returns the mantissa of value, aligned to the exponent of reference.
+                Assumes the exponent of value is larger than of value.
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.ByteUtil.AppendByte(System.Byte[],System.Byte)">
+            <summary>
+                Creates a copy of bytes and appends b to the end of it
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.ByteUtil.Merge(System.Byte[][])">
+            <param name="arrays"> - arrays to merge </param>
+            <returns> - merged array </returns>
+        </member>
+        <member name="M:Nethereum.Util.FormattingExtensions.ToStringInvariant``1(``0)">
+            <summary>
+            Converts formattable value to string in a culture-independent way.
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.UnitConversion.FromWei(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+                Converts from wei to a unit, NOTE: When the total number of digits is bigger than 29 they will be rounded the less
+                significant digits
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.UnitConversion.FromWei(System.Numerics.BigInteger,Nethereum.Util.UnitConversion.EthUnit)">
+            <summary>
+                Converts from wei to a unit, NOTE: When the total number of digits is bigger than 29 they will be rounded the less
+                significant digits
+            </summary>
+        </member>
+        <member name="M:Nethereum.Util.UnitConversion.FromWei(System.Numerics.BigInteger,System.Int32)">
+            <summary>
+                Converts from wei to a unit, NOTE: When the total number of digits is bigger than 29 they will be rounded the less
+                significant digits
+            </summary>
+        </member>
+    </members>
+</doc>
